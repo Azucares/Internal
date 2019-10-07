@@ -1,0 +1,74 @@
+﻿@model PartsInvViewModel
+
+<h3 class="p-2 bg-primary text-white text-center">Parts</h3>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-2 font-weight-bold">Part Number</div>
+        <div class="col-2 font-weight-bold">Name</div>
+        <div class="col-1 font-weight-bold">Location</div>
+        <div class="col font-weight-bold">Inventory</div>
+        <div class="col"></div>
+    </div>
+    <form asp-action="AddPart" class="entryForm" method="post">
+        <div class="row">
+            <div class="col-2">
+                <input name="PartNumber" class="form-control" />
+            </div>
+            <div class="col-2">
+                <input name="Name" class="form-control" />
+            </div>
+            <div class="col-1">
+                <input name="Location" class="form-control" />
+            </div>
+            <div class="col">
+
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">New Part</button>
+            </div>
+        </div>
+    </form>
+    @if (Model.Parts.Count() == 0)
+    {
+        <div class="row">
+            <div class="col text-center p-2">No Data</div>
+        </div>
+    }
+    else
+    {
+        @foreach(Part p in Model.Parts)
+        {
+            <div class="row border p-2">
+                <div class="col-1">
+                    <p>@p.PartNumber</p>
+                    <form asp-action="DeletePart" method="post">
+                        <div class="row" style="margin-top:27px;">
+                            <div class="col-2" style="margin-right:10px;">
+                                <a asp-action="UpdatePart" asp-route-key="@p.Id" class="btn btn-sm sm-button btn-outline-primary">Edit</a>
+                            </div>
+                            <input type="hidden" name="Id" value="@p.Id" />
+                            <div class="col-2">
+                                <button type="submit" class="btn sm-button btn-sm btn-outline-danger">Delete</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="col-3">
+                    <p>@p.Name</p>
+                </div>
+                <div class="col-1">@p.Location</div>
+                <div class="col-4">
+                        @await Html.PartialAsync("InvPartials/InvList", Model.matchInv(p.Id))
+                        <form asp-controller="PartsInv" asp-action="AddPartsInv" method="post">
+                            <input type="hidden" name="PartId" value="@p.Id" />
+                            @await Html.PartialAsync("InvPartials/InvAdder")
+                        </form>
+                                       
+                </div>
+                <div class="col"></div>
+            </div>
+         }
+    }
+</div>

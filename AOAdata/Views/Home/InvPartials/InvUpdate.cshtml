@@ -1,0 +1,14 @@
+﻿@model PartsInventory
+
+    <form asp-controller="PartsInv" asp-action="UpdatePartsInv" method="post">
+        <div class="row">
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="hidden" name="CostCode" value="@Model.CostCode" />
+            <input type="hidden" name="PartId" value="@Model.PartId" />
+            <input type="hidden" name="Part" value="@Model.Part" />
+
+            <input asp-for=@Model.Quantity class="form-control form-control-sm inputField quant-update" />
+            <p> at Cost Code @Model.CostCode </p>
+            <button type="submit" class="btn btn-outline-primary btn-sm inv-button">Update</button>
+        </div>
+    </form>

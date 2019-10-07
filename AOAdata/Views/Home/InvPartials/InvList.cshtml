@@ -1,0 +1,16 @@
+﻿@model IEnumerable<PartsInventory>
+
+@if (Model == null)
+{
+    <p>No parts in inventory!</p>
+}
+else
+{
+    foreach (PartsInventory i in @Model)
+    {
+<div class="col-10">
+    @await  Html.PartialAsync("InvPartials/InvUpdate", i)
+</div>
+           
+    }
+}

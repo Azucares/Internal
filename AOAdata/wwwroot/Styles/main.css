@@ -1,0 +1,33 @@
+﻿body{
+    font-size: .9em;
+}
+
+.entryForm{
+    margin-bottom:10px;
+    margin-top:3px;
+}
+
+.inputField{
+    height:25px;
+}
+
+.sm-button{
+    padding-top:2px;
+    padding-bottom:2px;
+    padding-left:4px;
+    padding-right:4px;
+    margin-left:7px;
+}
+.quant-update{
+    width:50px;
+}
+.inv-button {
+    font-size:.8em;
+    height:20px;
+    margin-top:2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-left: 5px;
+}

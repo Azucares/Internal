@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AOA data</title>
+    <link href="~/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/main.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row p-2">
+            <div class="col-2">
+                <a asp-controller="Home" asp-action="Index" class="@GetClassForButton("Home")">Parts</a>
+                <a asp-controller="#" asp-action="#" class="@GetClassForButton("Home")">Customers</a>
+                <a asp-controller="#" asp-action="#" class="@GetClassForButton("Home")">Supplies</a>
+            </div>
+            <div class="col">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@functions{
+    string GetClassForButton(string controller)
+    {
+        return "btn btn-block " + (ViewContext.RouteData.Values["controller"] as string == controller ? "btn-primary" : "btn-outline-primary");
+    }
+}
